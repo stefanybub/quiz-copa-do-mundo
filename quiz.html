@@ -4,144 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz — Copa do Mundo</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
   <style>
-    .quiz-wrap {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .barra-progresso-wrap {
-      background: #2a2a2a;
-      border-radius: 4px;
-      height: 8px;
-      margin-bottom: 28px;
-      overflow: hidden;
-    }
-    .barra-progresso {
-      height: 100%;
-      background: var(--dourado);
-      border-radius: 4px;
-      transition: width 0.4s ease;
-    }
-    .q-numero {
-      font-size: 12px;
-      color: var(--dourado);
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .q-texto {
-      font-size: 20px;
-      font-family: 'Oswald', sans-serif;
-      color: var(--branco);
-      margin-bottom: 24px;
-      line-height: 1.4;
-    }
-    .opcoes {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .opcao-btn {
-      background: #1a1a1a;
-      border: 1.5px solid #3a3a3a;
-      border-radius: 6px;
-      padding: 14px 18px;
-      text-align: left;
-      font-size: 15px;
-      color: var(--branco);
-      cursor: pointer;
-      font-family: 'Open Sans', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: all 0.2s;
-    }
-    .opcao-btn:hover:not(:disabled) {
-      border-color: var(--dourado);
-      color: var(--dourado-claro);
-    }
+    .quiz-wrap { max-width: 700px; margin: 0 auto; }
+    .barra-progresso-wrap { background: #2a2a2a; border-radius: 4px; height: 8px; margin-bottom: 28px; overflow: hidden; }
+    .barra-progresso { height: 100%; background: var(--dourado); border-radius: 4px; transition: width 0.4s ease; }
+    .q-numero { font-size: 12px; color: var(--dourado); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .q-texto { font-size: 20px; font-family: 'Oswald', sans-serif; color: var(--branco); margin-bottom: 24px; line-height: 1.4; }
+    .opcoes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .opcao-btn { background: #1a1a1a; border: 1.5px solid #3a3a3a; border-radius: 6px; padding: 14px 18px; text-align: left; font-size: 15px; color: var(--branco); cursor: pointer; font-family: 'Open Sans', sans-serif; display: flex; align-items: center; gap: 14px; transition: all 0.2s; }
+    .opcao-btn:hover:not(:disabled) { border-color: var(--dourado); color: var(--dourado-claro); }
     .opcao-btn:disabled { cursor: default; }
-    .opcao-btn.certa {
-      background: #1a3a1a;
-      border-color: #5cb85c;
-      color: #afffaf;
-    }
-    .opcao-btn.errada {
-      background: #3a1a1a;
-      border-color: #e74c3c;
-      color: #ffaaaa;
-    }
-    .opcao-letra {
-      background: var(--dourado);
-      color: var(--preto);
-      font-size: 12px;
-      font-weight: 600;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .opcao-btn.certa { background: #1a3a1a; border-color: #5cb85c; color: #afffaf; }
+    .opcao-btn.errada { background: #3a1a1a; border-color: #e74c3c; color: #ffaaaa; }
+    .opcao-letra { background: var(--dourado); color: var(--preto); font-size: 12px; font-weight: 600; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .opcao-btn.certa .opcao-letra { background: #5cb85c; color: #0a1a0a; }
     .opcao-btn.errada .opcao-letra { background: #e74c3c; color: #fff; }
-    .feedback {
-      padding: 12px 16px;
-      border-radius: 6px;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 16px;
-      display: none;
-    }
+    .feedback { padding: 12px 16px; border-radius: 6px; font-size: 14px; line-height: 1.5; margin-bottom: 16px; display: none; }
     .feedback.show { display: block; }
     .feedback.ok { background: #1a3a1a; border: 1.5px solid #5cb85c; color: #afffaf; }
     .feedback.err { background: #3a1a1a; border: 1.5px solid #e74c3c; color: #ffaaaa; }
-    .btn-proxima {
-      display: none;
-      margin-top: 4px;
-    }
+    .btn-proxima { display: none; margin-top: 4px; }
     .btn-proxima.show { display: inline-block; }
     .resultado-wrap { text-align: center; padding: 20px 0; }
     .resultado-icone { font-size: 64px; margin-bottom: 12px; }
-    .resultado-pontos {
-      font-size: 52px;
-      font-family: 'Oswald', sans-serif;
-      color: var(--dourado-claro);
-      margin-bottom: 4px;
-    }
+    .resultado-pontos { font-size: 52px; font-family: 'Oswald', sans-serif; color: var(--dourado-claro); margin-bottom: 4px; }
     .resultado-sub { font-size: 14px; color: #888; margin-bottom: 20px; }
-    .resultado-comentario {
-      background: #1a1a1a;
-      border: 1.5px solid var(--dourado);
-      border-radius: 8px;
-      padding: 18px 20px;
-      font-size: 15px;
-      color: var(--branco);
-      line-height: 1.6;
-      margin-bottom: 28px;
-      text-align: left;
-    }
-    .erros-titulo {
-      font-size: 13px;
-      color: var(--dourado);
-      font-weight: 600;
-      text-align: left;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-    .erro-item {
-      background: #1a1010;
-      border: 1px solid #9a7a1a;
-      border-radius: 6px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      text-align: left;
-    }
+    .resultado-comentario { background: #1a1a1a; border: 1.5px solid var(--dourado); border-radius: 8px; padding: 18px 20px; font-size: 15px; color: var(--branco); line-height: 1.6; margin-bottom: 28px; text-align: left; }
+    .erros-titulo { font-size: 13px; color: var(--dourado); font-weight: 600; text-align: left; margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+    .erro-item { background: #1a1010; border: 1px solid #9a7a1a; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; text-align: left; }
     .erro-item .eq { font-size: 13px; color: #ffddaa; margin-bottom: 6px; }
     .erro-item .es { font-size: 12px; color: #ffaaaa; margin-bottom: 2px; }
     .erro-item .ec { font-size: 12px; color: #afffaf; }
@@ -150,7 +41,6 @@
 </head>
 <body>
 
-  <!-- MENU -->
   <nav>
     <a href="index.html" class="nav-logo">⚽ Quiz Copa</a>
     <ul class="nav-links">
@@ -160,11 +50,9 @@
     </ul>
   </nav>
 
-  <!-- CONTEÚDO -->
   <main>
     <div class="quiz-wrap">
 
-      <!-- TELA DO QUIZ -->
       <div id="tela-quiz">
         <div id="saudacao" style="margin-bottom: 24px;"></div>
         <div class="barra-progresso-wrap">
@@ -177,7 +65,6 @@
         <button class="btn btn-proxima" id="btn-proxima">Próxima pergunta →</button>
       </div>
 
-      <!-- TELA DE RESULTADO -->
       <div id="tela-resultado" style="display: none;">
         <div class="resultado-wrap">
           <div class="resultado-icone" id="res-icone"></div>
@@ -196,19 +83,18 @@
     </div>
   </main>
 
-  <!-- RODAPÉ -->
   <footer>
     <p>Quiz Copa do Mundo &copy; 2025 — Desenvolvido com <span>&#9917;</span> e muito futebol.</p>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
   <script>
     const perguntas = [
       {
         q: "Qual seleção tem o maior número de títulos mundiais?",
         ops: ["Argentina", "Alemanha", "Brasil", "Itália"],
         c: 2,
-        ok: "✓ ISSO MESMO! 🇧🇷 O Brasil é pentacampeão! Cinco estrelinhas brilhando. Você claramente foi criado certo.",
+        ok: "✓ ISSO MESMO! O Brasil é pentacampeão! Cinco estrelinhas brilhando. Você claramente foi criado certo.",
         err: "✗ Errou feio! É o Brasil, com 5 títulos. Você não é brasileiro, é? Porque isso é pecado capital por aqui."
       },
       {
@@ -223,10 +109,10 @@
         ops: ["Ronaldo Fenômeno", "Miroslav Klose", "Gerd Müller", "Pelé"],
         c: 1,
         ok: "✓ Miroslav Klose, 16 gols! Máquina germânica de fazer gol. Você sabe das coisas!",
-        err: "✗ Errou! É Miroslav Klose com 16 gols. Alemão não brinca em serviço. Enquanto você estava errando, ele já tinha feito dois."
+        err: "✗ Errou! É Miroslav Klose com 16 gols. Alemão não brinca em serviço. Enquanto você errava, ele já tinha feito dois."
       },
       {
-        q: "Qual foi o placar do histórico 'Mineirazo' em 2014?",
+        q: "Qual foi o placar do histórico Mineirazo em 2014?",
         ops: ["5 a 0", "6 a 1", "7 a 1", "8 a 2"],
         c: 2,
         ok: "✓ 7 a 1... você lembrou desse trauma voluntariamente. Respeito. Isso exige coragem.",
@@ -241,9 +127,9 @@
       },
       {
         q: "Qual jogador ganhou a Bola de Ouro na Copa do Mundo de 2022?",
-        ops: ["Kylian Mbappé", "Lionel Messi", "Luka Modrić", "Neymar"],
+        ops: ["Kylian Mbappé", "Lionel Messi", "Luka Modric", "Neymar"],
         c: 1,
-        ok: "✓ Messi! Finalmente completou o álbum da vida. Bola de Ouro, Copa, Champions... só falta ele virar presidente.",
+        ok: "✓ Messi! Finalmente completou o álbum da vida. Bola de Ouro, Copa, Champions... só falta virar presidente.",
         err: "✗ Errou! Foi o Messi. Ele esperou 20 anos por isso. Você não conseguiu nem esperar ler as opções com calma."
       },
       {
@@ -251,14 +137,14 @@
         ops: ["Croácia", "Bélgica", "França", "Uruguai"],
         c: 2,
         ok: "✓ França campeã! Mbappé tinha 19 anos e já dominava o mundo. Alguns de nós têm 19 anos e não dominamos nem o travesseiro.",
-        err: "✗ Errou! Foi a França. Dica de memorização: pense em baguete erguendo uma taça dourada."
+        err: "✗ Errou! Foi a França. Dica: pense em baguete erguendo uma taça dourada."
       },
       {
         q: "Quantas seleções participam da fase de grupos de uma Copa do Mundo tradicional?",
         ops: ["24", "32", "36", "48"],
         c: 1,
         ok: "✓ 32 seleções! Divididas em 8 grupos de 4. Você tem mais organização mental do que parece.",
-        err: "✗ Errou! São 32. A partir de 2026 serão 48, mas isso não te ajuda agora, né? Foco no presente."
+        err: "✗ Errou! São 32. A partir de 2026 serão 48, mas isso não te ajuda agora. Foco no presente."
       },
       {
         q: "Qual jogador é o único na história a ser campeão mundial em três Copas como jogador?",
@@ -277,17 +163,18 @@
     ];
 
     const comentarios = [
-      { icone: "😵", texto: "0 pontos. ZERO absoluto. Você nem de sorte acertou. Matematicamente impossível errar tudo sem tentar — e você conseguiu. Darwin está preocupado com você." },
-{ icone: "🤦", texto: "1 ponto. Um. Solitário. Abandonado. Provavelmente foi sem querer. Seu dedo escorregou na opção certa e você nem percebeu. Volta pro berçário." },
-{ icone: "😬", texto: "2 pontos. Você sabe que futebol existe e que tem uma bola envolvida. Parabéns, isso é literalmente tudo que você sabe. Nem o juiz de linha te ajudaria." },
-{ icone: "😐", texto: "3 pontos. Você assistiu futebol uma vez na vida, provavelmente obrigado, provavelmente reclamando. E ainda assim errou 7. Impressionante de um jeito ruim." },
-{ icone: "🙂", texto: "4 pontos. Você é aquele amigo que grita 'VAI BRASIL' mas não sabe quem está jogando. Entusiasmo máximo, conhecimento mínimo. Um fenômeno da natureza." },
-{ icone: "😌", texto: "5 pontos. Exatamente na média. Nem herói, nem vexame. Você é o intervalo do jogo — existe, ninguém pediu, mas tudo bem." },
-{ icone: "😎", texto: "6 pontos! Acima da média! Você já comentou jogo no boteco e as pessoas fingiram que te ouviram. Isso já é uma vitória social considerável." },
-{ icone: "🏅", texto: "7 pontos! Muito bem! Você claramente sacrificou horas de sono assistindo Copa. Sua família estava preocupada. Valeu a pena? Talvez." },
-{ icone: "🌟", texto: "8 pontos! Você sabe mais de Copa do que a maioria dos comentaristas de televisão. Isso não é difícil, mas ainda assim, parabéns." },
-{ icone: "🥇", texto: "9 pontos! Quase perfeito! Você errou UMA. Uma perguntinha. O VAR revisou e confirmou: você é humano. Que decepção deliciosa." },
-{ icone: "🏆", texto: "10 pontos! PERFEITO! Você é o Pelé dos quizzes, o Messi das perguntas, o técnico que ninguém demite. A taça é sua. Chora, você merece." }
+      { icone: "😵", texto: "0 pontos. ZERO absoluto. Voce nem de sorte acertou. Matematicamente impossivel errar tudo sem tentar e voce conseguiu. Darwin esta preocupado com voce." },
+      { icone: "🤦", texto: "1 ponto. Um. Solitario. Abandonado. Provavelmente foi sem querer. Seu dedo escorregou na opcao certa e voce nem percebeu. Volta pro bercario." },
+      { icone: "😬", texto: "2 pontos. Voce sabe que futebol existe e que tem uma bola envolvida. Parabens, isso e literalmente tudo que voce sabe. Nem o juiz de linha te ajudaria." },
+      { icone: "😐", texto: "3 pontos. Voce assistiu futebol uma vez na vida, provavelmente obrigado, provavelmente reclamando. E ainda assim errou 7. Impressionante de um jeito ruim." },
+      { icone: "🙂", texto: "4 pontos. Voce e aquele amigo que grita VAI BRASIL mas nao sabe quem esta jogando. Entusiasmo maximo, conhecimento minimo. Um fenomeno da natureza." },
+      { icone: "😌", texto: "5 pontos. Exatamente na media. Nem heroi, nem vexame. Voce e o intervalo do jogo: existe, ninguem pediu, mas tudo bem." },
+      { icone: "😎", texto: "6 pontos! Acima da media! Voce ja comentou jogo no boteco e as pessoas fingiram que te ouviram. Isso ja e uma vitoria social consideravel." },
+      { icone: "🏅", texto: "7 pontos! Muito bem! Voce claramente sacrificou horas de sono assistindo Copa. Sua familia estava preocupada. Valeu a pena? Talvez." },
+      { icone: "🌟", texto: "8 pontos! Voce sabe mais de Copa do que a maioria dos comentaristas de televisao. Isso nao e dificil, mas ainda assim, parabens." },
+      { icone: "🥇", texto: "9 pontos! Quase perfeito! Voce errou UMA. Uma perguntinha. O VAR revisou e confirmou: voce e humano. Que decepcao deliciosa." },
+      { icone: "🏆", texto: "10 pontos! PERFEITO! Voce e o Pele dos quizzes, o Messi das perguntas, o tecnico que ninguem demite. A taca e sua. Chora, voce merece." }
+    ];
 
     let atual = 0, pontos = 0, erros = [], nomeJogador = '';
 
@@ -296,9 +183,7 @@
       nomeJogador = params.get('nome') || '';
       if (nomeJogador) {
         document.getElementById('saudacao').innerHTML =
-          `<div class="card" style="padding: 14px 20px; margin-bottom: 8px;">
-            🏆 Boa sorte, <strong style="color: var(--dourado);">${nomeJogador}</strong>! Mostre do que você é feito.
-          </div>`;
+          '<div class="card" style="padding: 14px 20px; margin-bottom: 8px;">Boa sorte, <strong style="color: var(--dourado);">' + nomeJogador + '</strong>! Mostre do que voce e feito.</div>';
       }
       renderPergunta();
     }
@@ -306,16 +191,16 @@
     function renderPergunta() {
       const p = perguntas[atual];
       const letras = ['A', 'B', 'C', 'D'];
-      document.getElementById('q-numero').textContent = `Pergunta ${atual + 1} de ${perguntas.length}`;
+      document.getElementById('q-numero').textContent = 'Pergunta ' + (atual + 1) + ' de ' + perguntas.length;
       document.getElementById('q-texto').textContent = p.q;
-      document.getElementById('barra').style.width = `${(atual / perguntas.length) * 100}%`;
+      document.getElementById('barra').style.width = ((atual / perguntas.length) * 100) + '%';
 
       const opcoes = document.getElementById('opcoes');
       opcoes.innerHTML = '';
       p.ops.forEach(function(txt, i) {
         const btn = document.createElement('button');
         btn.className = 'opcao-btn';
-        btn.innerHTML = `<span class="opcao-letra">${letras[i]}</span><span>${txt}</span>`;
+        btn.innerHTML = '<span class="opcao-letra">' + letras[i] + '</span><span>' + txt + '</span>';
         btn.onclick = function() { responder(i, btn); };
         opcoes.appendChild(btn);
       });
@@ -346,7 +231,7 @@
       }
 
       const btnProx = document.getElementById('btn-proxima');
-      btnProx.textContent = atual < perguntas.length - 1 ? 'Próxima pergunta →' : 'Ver meu resultado →';
+      btnProx.textContent = atual < perguntas.length - 1 ? 'Proxima pergunta' : 'Ver meu resultado';
       btnProx.className = 'btn btn-proxima show';
     }
 
@@ -366,7 +251,7 @@
 
       const c = comentarios[pontos];
       document.getElementById('res-icone').textContent = c.icone;
-      document.getElementById('res-pontos').textContent = `${pontos}/10`;
+      document.getElementById('res-pontos').textContent = pontos + '/10';
 
       let comentario = c.texto;
       if (nomeJogador) {
@@ -378,17 +263,12 @@
       listaEl.innerHTML = '';
 
       if (erros.length > 0) {
-        document.getElementById('erros-titulo').textContent = `Perguntas que você errou (${erros.length}):`;
+        document.getElementById('erros-titulo').textContent = 'Perguntas que voce errou (' + erros.length + '):';
         erros.forEach(function(e) {
-          listaEl.innerHTML += `
-            <div class="erro-item">
-              <div class="eq">❓ ${e.q}</div>
-              <div class="es">✗ Sua resposta: ${e.sua}</div>
-              <div class="ec">✓ Resposta certa: ${e.certa}</div>
-            </div>`;
+          listaEl.innerHTML += '<div class="erro-item"><div class="eq">? ' + e.q + '</div><div class="es">Sua resposta: ' + e.sua + '</div><div class="ec">Resposta certa: ' + e.certa + '</div></div>';
         });
       } else {
-        document.getElementById('erros-titulo').textContent = '🏆 Você não errou nenhuma! Lenda absoluta.';
+        document.getElementById('erros-titulo').textContent = 'Voce nao errou nenhuma! Lenda absoluta.';
       }
     }
 
