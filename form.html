@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Participar — Quiz Copa do Mundo</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- MENU -->
+  <nav>
+    <a href="index.html" class="nav-logo">⚽ Quiz Copa</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="form.html">Participar</a></li>
+      <li><a href="about.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+
+    <h1>Participar do Quiz</h1>
+    <p style="margin-bottom: 32px;">
+      Preencha seus dados abaixo para começar. Todos os campos são obrigatórios.
+    </p>
+
+    <div class="card" style="overflow: visible; height: auto; padding-bottom: 32px;">
+
+      <form id="form-cadastro" action="quiz.html" method="GET">
+
+        <!-- NOME -->
+        <div class="form-group">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Ex: João Silva">
+          <span class="erro">Informe seu nome completo (mínimo 3 caracteres).</span>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="text" id="email" name="email" placeholder="Ex: joao@email.com">
+          <span class="erro">Informe um e-mail válido.</span>
+        </div>
+
+        <!-- IDADE -->
+        <div class="form-group">
+          <label for="idade">Idade</label>
+          <input type="number" id="idade" name="idade" placeholder="Ex: 25" min="5" max="120">
+          <span class="erro">Informe uma idade entre 5 e 120 anos.</span>
+        </div>
+
+        <!-- SELEÇÃO FAVORITA -->
+        <div class="form-group">
+          <label for="selecao">Seleção favorita</label>
+          <select id="selecao" name="selecao">
+            <option value="">Selecione uma seleção...</option>
+            <option value="Brasil">🇧🇷 Brasil</option>
+            <option value="Argentina">🇦🇷 Argentina</option>
+            <option value="Alemanha">🇩🇪 Alemanha</option>
+            <option value="França">🇫🇷 França</option>
+            <option value="Espanha">🇪🇸 Espanha</option>
+            <option value="Portugal">🇵🇹 Portugal</option>
+            <option value="Itália">🇮🇹 Itália</option>
+            <option value="Outra">🌍 Outra</option>
+          </select>
+          <span class="erro">Selecione sua seleção favorita.</span>
+        </div>
+
+        <!-- NÍVEL DE CONHECIMENTO -->
+        <div class="form-group">
+          <label for="nivel">Seu nível de conhecimento sobre Copa do Mundo</label>
+          <select id="nivel" name="nivel">
+            <option value="">Selecione seu nível...</option>
+            <option value="Iniciante">⚽ Iniciante — Assisto só na final</option>
+            <option value="Intermediário">🏅 Intermediário — Acompanho os jogos</option>
+            <option value="Avançado">🏆 Avançado — Sei tudo sobre Copa</option>
+          </select>
+          <span class="erro">Selecione seu nível de conhecimento.</span>
+        </div>
+
+        <!-- TERMOS -->
+        <div class="form-group">
+          <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; color: var(--branco); font-size: 14px;">
+            <input
+              type="checkbox"
+              id="termos"
+              name="termos"
+              style="width: auto; margin-top: 3px; accent-color: var(--dourado);"
+            >
+            Declaro que as informações fornecidas são verdadeiras e aceito participar do quiz.
+          </label>
+          <span class="erro" style="margin-top: 6px;">Você precisa aceitar os termos para continuar.</span>
+        </div>
+
+        <!-- BOTÃO -->
+        <div style="text-align: right; margin-top: 24px;">
+          <button type="submit" class="btn">Enviar e começar ⚽</button>
+        </div>
+
+      </form>
+
+    </div>
+
+    <div style="height: 60px;"></div>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>Quiz Copa do Mundo &copy; 2025 — Desenvolvido com <span>&#9917;</span> e muito futebol.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
