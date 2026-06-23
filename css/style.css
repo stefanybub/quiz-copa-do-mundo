@@ -1,0 +1,241 @@
+/* ===== IMPORTAÇÃO DE FONTE ===== */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Open+Sans:wght@400;600&display=swap');
+
+/* ===== VARIÁVEIS GLOBAIS ===== */
+:root {
+  --preto: #0a0a0a;
+  --preto-medio: #1a1a1a;
+  --preto-claro: #2a2a2a;
+  --dourado: #c9a227;
+  --dourado-claro: #e8c547;
+  --dourado-escuro: #9a7a1a;
+  --branco: #f5f0e0;
+  --cinza: #888;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--preto);
+  color: var(--branco);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* ===== MENU DE NAVEGAÇÃO ===== */
+nav {
+  background-color: var(--preto-medio);
+  border-bottom: 3px solid var(--dourado);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--dourado);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+}
+
+.nav-links a {
+  color: var(--branco);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1.5px solid transparent;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.nav-links a:hover,
+.nav-links a.ativo {
+  color: var(--dourado);
+  border-color: var(--dourado);
+}
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
+main {
+  flex: 1;
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  overflow: visible;
+}
+
+/* ===== TÍTULOS ===== */
+h1, h2, h3 {
+  font-family: 'Oswald', sans-serif;
+  color: var(--dourado);
+  letter-spacing: 1px;
+}
+
+h1 { font-size: 36px; margin-bottom: 12px; }
+h2 { font-size: 26px; margin-bottom: 10px; }
+h3 { font-size: 20px; margin-bottom: 8px; }
+
+p {
+  line-height: 1.7;
+  color: var(--branco);
+  margin-bottom: 12px;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  background-color: var(--dourado);
+  color: var(--preto);
+  border: none;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: var(--dourado-claro);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--dourado);
+  border: 2px solid var(--dourado);
+}
+
+.btn-outline:hover {
+  background-color: var(--dourado);
+  color: var(--preto);
+}
+
+/* ===== CARDS ===== */
+.card {
+  background-color: var(--preto-medio);
+  border: 1.5px solid var(--dourado-escuro);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 20px;
+  overflow: visible;
+  height: auto;
+}
+
+/* ===== DIVISOR ===== */
+.divisor {
+  border: none;
+  border-top: 1px solid var(--dourado-escuro);
+  margin: 32px 0;
+}
+
+/* ===== RODAPÉ ===== */
+footer {
+  background-color: var(--preto-medio);
+  border-top: 3px solid var(--dourado);
+  text-align: center;
+  padding: 20px 40px;
+  font-size: 13px;
+  color: var(--cinza);
+}
+
+footer span {
+  color: var(--dourado);
+}
+
+/* ===== FORMULÁRIO ===== */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dourado);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background-color: var(--preto-claro);
+  border: 1.5px solid var(--dourado-escuro);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--branco);
+  font-family: 'Open Sans', sans-serif;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--dourado);
+}
+
+.form-group .erro {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}
+
+.form-group.invalido .erro {
+  display: block;
+}
+
+.form-group.invalido input,
+.form-group.invalido select,
+.form-group.invalido textarea {
+  border-color: #e74c3c;
+}
+
+/* ===== MENSAGEM DE RESULTADO ===== */
+.mensagem {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.mensagem.sucesso {
+  background-color: #1a3a1a;
+  border: 1.5px solid #5cb85c;
+  color: #afffaf;
+}
+
+.mensagem.erro {
+  background-color: #3a1a1a;
+  border: 1.5px solid #e74c3c;
+  color: #ffaaaa;
+}
